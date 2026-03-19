@@ -1,12 +1,26 @@
 <!-- 1-frontend/src/components/product/ProductCard.vue -->
 <script setup lang="ts">
-defineProps<{
+import { useCartStore } from '@/stores/cartStore'
+
+const cart = useCartStore()
+
+const props = defineProps<{
+  id: number
   name: string
   price: number
   image: string
   isNew?: boolean
   discount?: number
 }>()
+
+function addToCart() {
+  cart.addItem({
+    id: props.id,
+    name: props.name,
+    price: props.price,
+    image: props.image,
+  })
+}
 </script>
 
 <template>
@@ -21,7 +35,7 @@ defineProps<{
       <p class="card__price">
         {{ new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(price) }}
       </p>
-      <button class="card__btn">Adicionar ao Carrinho</button>
+      <button class="card__btn" @click="addToCart">Adicionar ao Carrinho</button>
     </div>
   </div>
 </template>
@@ -105,6 +119,6 @@ defineProps<{
 }
 
 .card__btn:hover {
-  background: #34495e;
+  background: #e74c3c;
 }
 </style>

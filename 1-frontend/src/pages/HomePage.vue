@@ -39,12 +39,7 @@ const products = [
     image: 'https://picsum.photos/seed/jacket1/400/300',
     discount: 20,
   },
-  {
-    id: 6,
-    name: 'Mochila Urban',
-    price: 199.9,
-    image: 'https://picsum.photos/seed/bag1/400/300',
-  },
+  { id: 6, name: 'Mochila Urban', price: 199.9, image: 'https://picsum.photos/seed/bag1/400/300' },
 ]
 </script>
 
@@ -57,6 +52,7 @@ const products = [
         <ProductCard
           v-for="product in products"
           :key="product.id"
+          :id="product.id"
           :name="product.name"
           :price="product.price"
           :image="product.image"

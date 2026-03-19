@@ -1,9 +1,12 @@
 <!-- 1-frontend/src/App.vue -->
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import CartDrawer from '@/components/cart/CartDrawer.vue'
+</script>
 
 <template>
   <div id="app">
     <RouterView />
+    <CartDrawer />
   </div>
 </template>
 
