@@ -4,6 +4,7 @@ import { ref, computed, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import AppHeader from '@/components/layout/AppHeader.vue'
 import AppFooter from '@/components/layout/AppFooter.vue'
+import HeroBanner from '@/components/layout/HeroBanner.vue'
 import ProductCard from '@/components/product/ProductCard.vue'
 import ProductFilter from '@/components/product/ProductFilter.vue'
 
@@ -84,6 +85,7 @@ const filteredProducts = computed(() =>
 <template>
   <div class="home">
     <AppHeader />
+    <HeroBanner />
     <main class="main">
       <h2>Produtos em destaque</h2>
       <div class="layout">
@@ -114,27 +116,26 @@ const filteredProducts = computed(() =>
 <style scoped>
 .main {
   max-width: 1200px;
-  margin: 32px auto;
-  padding: 0 24px;
+  margin: 24px auto;
+  padding: 0 16px;
 }
 
 h2 {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   color: #2c3e50;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
 
 .layout {
   display: grid;
-  grid-template-columns: 260px 1fr;
-  gap: 24px;
-  align-items: start;
+  grid-template-columns: 1fr;
+  gap: 16px;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
 }
 
 .empty {
@@ -145,9 +146,15 @@ h2 {
   padding: 48px;
 }
 
-@media (max-width: 768px) {
+@media (min-width: 768px) {
   .layout {
-    grid-template-columns: 1fr;
+    grid-template-columns: 240px 1fr;
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 </style>

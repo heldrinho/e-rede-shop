@@ -43,11 +43,11 @@ function filterCategory(category: string) {
 
         <!-- Carrinho -->
         <button class="cart-btn" @click="cart.isOpen = true">
-          🛍️ Carrinho
-          <span v-if="cart.totalItems > 0" class="cart-badge">
-            {{ cart.totalItems }}
-          </span>
-        </button>
+  🛍️ <span class="cart-text">Carrinho</span>
+  <span v-if="cart.totalItems > 0" class="cart-badge">
+    {{ cart.totalItems }}
+  </span>
+</button>
       </div>
     </div>
 
@@ -77,7 +77,7 @@ function filterCategory(category: string) {
 }
 
 .header__top {
-  padding: 12px 24px;
+  padding: 10px 16px;
 }
 
 .header__container {
@@ -85,11 +85,11 @@ function filterCategory(category: string) {
   margin: 0 auto;
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 10px;
 }
 
 .header__logo {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   font-weight: 800;
   color: white;
   background: none;
@@ -98,6 +98,7 @@ function filterCategory(category: string) {
   white-space: nowrap;
   padding: 0;
   transition: opacity 0.2s;
+  flex-shrink: 0;
 }
 
 .header__logo:hover {
@@ -110,24 +111,27 @@ function filterCategory(category: string) {
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  min-width: 0;
 }
 
 .header__search-input {
   flex: 1;
-  padding: 12px 16px;
+  padding: 10px 12px;
   border: none;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   outline: none;
   color: #333;
+  min-width: 0;
 }
 
 .header__search-btn {
-  padding: 12px 20px;
+  padding: 10px 14px;
   background: #e74c3c;
   border: none;
   cursor: pointer;
-  font-size: 1.1rem;
+  font-size: 1rem;
   transition: background 0.2s;
+  flex-shrink: 0;
 }
 
 .header__search-btn:hover {
@@ -138,21 +142,26 @@ function filterCategory(category: string) {
   background: rgba(255, 255, 255, 0.15);
   border: 1px solid rgba(255, 255, 255, 0.25);
   color: white;
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   font-weight: 600;
   cursor: pointer;
   position: relative;
-  padding: 10px 16px;
+  padding: 10px 12px;
   border-radius: 8px;
   white-space: nowrap;
   transition: background 0.2s;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
+  flex-shrink: 0;
 }
 
 .cart-btn:hover {
   background: rgba(255, 255, 255, 0.25);
+}
+
+.cart-text {
+  display: none;
 }
 
 .cart-badge {
@@ -171,17 +180,24 @@ function filterCategory(category: string) {
   justify-content: center;
 }
 
-/* Linha de categorias */
 .header__nav-bar {
   background: rgba(0, 0, 0, 0.2);
-  padding: 0 24px;
+  padding: 0 16px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.header__nav-bar::-webkit-scrollbar {
+  display: none;
 }
 
 .header__nav {
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
-  gap: 4px;
+  gap: 0;
+  width: max-content;
+  min-width: 100%;
 }
 
 .header__nav button {
@@ -194,10 +210,20 @@ function filterCategory(category: string) {
   cursor: pointer;
   transition: all 0.2s;
   border-bottom: 2px solid transparent;
+  white-space: nowrap;
 }
 
 .header__nav button:hover {
   color: white;
   border-bottom: 2px solid white;
+}
+
+@media (min-width: 640px) {
+  .cart-text {
+    display: inline;
+  }
+  .header__logo {
+    font-size: 1.3rem;
+  }
 }
 </style>
