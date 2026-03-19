@@ -17,6 +17,7 @@ export interface CartItem {
 export const useCartStore = defineStore('cart', () => {
   const items = ref<CartItem[]>([])
   const isOpen = ref(false)
+  const lastAdded = ref<string | null>(null)
 
   const totalItems = computed(() => items.value.reduce((sum, item) => sum + item.quantity, 0))
 
@@ -31,7 +32,12 @@ export const useCartStore = defineStore('cart', () => {
     } else {
       items.value.push({ product, quantity: 1 })
     }
-    isOpen.value = true
+
+    // Mostra notificação
+    lastAdded.value = product.name
+    setTimeout(() => {
+      lastAdded.value = null
+    }, 2500)
   }
 
   function removeItem(productId: number) {
@@ -56,6 +62,7 @@ export const useCartStore = defineStore('cart', () => {
     isOpen,
     totalItems,
     subtotal,
+    lastAdded,
     addItem,
     removeItem,
     updateQuantity,
